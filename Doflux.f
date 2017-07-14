@@ -55,7 +55,7 @@ c*****compute the flux curve
          call cdcalc (1)
          first = 0.4343*cd(1)
          flux = rinteg(xref,cd,dummy1,ntau,first)
-      else if (scatopt .eq. 1) then
+      else
          call cdcalc_JS (1)
          flux = Flux_cont_moog
       endif

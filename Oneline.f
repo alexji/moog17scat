@@ -42,7 +42,7 @@ c*****calculate continuous opacity and intensity/flux at line wavelength
             call cdcalc(1)
             first = 0.4343*cd(1)
             flux = rinteg(xref,cd,dummy1,ntau,first)
-         else if (scatopt .eq. 1) then
+         else
             call cdcalc_JS(1)
 c APJ I think this is right based on mirroring the 2011 code
             flux = Flux_cont
@@ -65,7 +65,7 @@ c*****check the wavelength step size; expand/contract as necessary
             call cdcalc(2)
             first = 0.4343*cd(1)
             d(1) = rinteg(xref,cd,dummy1,ntau,first)
-         else if (scatopt .eq. 1) then
+         else
             call cdcalc_JS(2)
             d(1) = adepth
          endif
@@ -80,7 +80,7 @@ c*****check the wavelength step size; expand/contract as necessary
                call cdcalc(2)
                first = 0.4343*cd(1)
                d(2) = rinteg(xref,cd,dummy1,ntau,first)       
-            else if (scatopt .eq. 1) then
+            else
                call cdcalc_JS(2)
                d(2) = adepth
             endif
@@ -114,7 +114,7 @@ c     until the depth is very small in the line wing
             call cdcalc(2)
             first = 0.4343*cd(1)
             d(n) = rinteg(xref,cd,dummy1,ntau,first)       
-         else if (scatopt .eq. 1) then
+         else
             call cdcalc_JS(2)
             d(n) = adepth
          endif
