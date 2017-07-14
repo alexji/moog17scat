@@ -45,68 +45,68 @@ c*****define the plot boundaries
       enddo
 
 
-cc*****start the plot via some setup calls
-c      call sm_limits (xlo,xhi,ylo,yhi)
-c      smlxtic = 0.20
-c      smlytic = 0.20
-c      bigxtic = 1.0
-c      bigytic = 1.0
-c      call sm_ticksize (smlxtic,bigxtic,smlytic,bigytic)
-c 
-c 
-cc*****draw and label the box for the curve-of-growth
-c      call sm_expand (0.6)
-c      call sm_lweight (1.4)
-c      call defcolor (1)
-c      call sm_box (0,0,0,0)
-c      call sm_expand (0.85)
-c      call sm_box (1,2,4,4)
-c      array = 'log gf'
-c      call sm_relocate (0.5*(xlo+xhi),ylo-0.10*(yhi-ylo))
-c      call sm_putlabel (5,array)
-c      array = 'log (EW/lambda)'
-c      call sm_relocate (xlo-0.06*(xhi-xlo),0.5*(yhi+ylo))
-c      call sm_angle (90.)
-c      call sm_putlabel (5,array)
-c      call sm_angle (0.)
-c      call sm_ltype (1)
-c      call sm_lweight (0.8)
-c      call sm_grid (0,0)
-c      call sm_ltype (0)
-c
-c
-cc*****plot the computed curve-of-growth points; exit normally
-c      call sm_expand (1.05)
-c      call defcolor (2)
-c      style(1) = 240.7
-c      call sm_ptype (style,1)
-c      call sm_points (gfplot,rwplot,ncurve)
-c      call defcolor (1)
-c      ich = idint(charge(lim1) + 0.1)
-c      if (ich .eq. 1) then
-c         ion = ' I  '
-c      elseif (ich .eq. 2) then
-c         ion = ' II '
-c      elseif (ich .eq. 3) then
-c         ion = ' III'
-c      endif
-c      iatom = idint(atom1(lim1))
-c      write (array,1002) names(iatom),ion
-c      call sm_expand (0.75)
-c      call sm_relocate (xhi-0.20*(xhi-xlo),ylo+0.35*(yhi-ylo))
-c      call sm_putlabel (5,array)
-c      call sm_relocate ((xhi+xlo)/2.0,yhi-0.03*(yhi-ylo))
-c      call sm_putlabel (5,moditle)
-c      xfour = dlog10(xabund(iatom)) + 12.0
-c      write (array,1003) xfour
-c      call sm_relocate (xhi-0.20*(xhi-xlo),ylo+0.27*(yhi-ylo))
-c      call sm_putlabel (5,array)
-c      write (array,1005) wave1(lim1)
-c      call sm_relocate (xhi-0.20*(xhi-xlo),ylo+0.19*(yhi-ylo))
-c      call sm_putlabel (5,array)
-c      write (array,1004) e(lim1,1) 
-c      call sm_relocate (xhi-0.20*(xhi-xlo),ylo+0.11*(yhi-ylo)) 
-c      call sm_putlabel (5,array)
+c*****start the plot via some setup calls
+      call sm_limits (xlo,xhi,ylo,yhi)
+      smlxtic = 0.20
+      smlytic = 0.20
+      bigxtic = 1.0
+      bigytic = 1.0
+      call sm_ticksize (smlxtic,bigxtic,smlytic,bigytic)
+ 
+ 
+c*****draw and label the box for the curve-of-growth
+      call sm_expand (0.6)
+      call sm_lweight (1.4)
+      call defcolor (1)
+      call sm_box (0,0,0,0)
+      call sm_expand (0.85)
+      call sm_box (1,2,4,4)
+      array = 'log gf'
+      call sm_relocate (0.5*(xlo+xhi),ylo-0.10*(yhi-ylo))
+      call sm_putlabel (5,array)
+      array = 'log (EW/lambda)'
+      call sm_relocate (xlo-0.06*(xhi-xlo),0.5*(yhi+ylo))
+      call sm_angle (90.)
+      call sm_putlabel (5,array)
+      call sm_angle (0.)
+      call sm_ltype (1)
+      call sm_lweight (0.8)
+      call sm_grid (0,0)
+      call sm_ltype (0)
+
+
+c*****plot the computed curve-of-growth points; exit normally
+      call sm_expand (1.05)
+      call defcolor (2)
+      style(1) = 240.7
+      call sm_ptype (style,1)
+      call sm_points (gfplot,rwplot,ncurve)
+      call defcolor (1)
+      ich = idint(charge(lim1) + 0.1)
+      if (ich .eq. 1) then
+         ion = ' I  '
+      elseif (ich .eq. 2) then
+         ion = ' II '
+      elseif (ich .eq. 3) then
+         ion = ' III'
+      endif
+      iatom = idint(atom1(lim1))
+      write (array,1002) names(iatom),ion
+      call sm_expand (0.75)
+      call sm_relocate (xhi-0.20*(xhi-xlo),ylo+0.35*(yhi-ylo))
+      call sm_putlabel (5,array)
+      call sm_relocate ((xhi+xlo)/2.0,yhi-0.03*(yhi-ylo))
+      call sm_putlabel (5,moditle)
+      xfour = dlog10(xabund(iatom)) + 12.0
+      write (array,1003) xfour
+      call sm_relocate (xhi-0.20*(xhi-xlo),ylo+0.27*(yhi-ylo))
+      call sm_putlabel (5,array)
+      write (array,1005) wave1(lim1)
+      call sm_relocate (xhi-0.20*(xhi-xlo),ylo+0.19*(yhi-ylo))
+      call sm_putlabel (5,array)
+      write (array,1004) e(lim1,1) 
+      call sm_relocate (xhi-0.20*(xhi-xlo),ylo+0.11*(yhi-ylo)) 
+      call sm_putlabel (5,array)
       return
 
 
