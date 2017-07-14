@@ -62,9 +62,14 @@ c     spectrum wavelength, if needed
             call opacit (2,wave)    
             if (modprintopt .ge. 2) 
      .          write (nf1out,1001) wave,(kaplam(i),i=1,ntau)
-            call cdcalc (1)  
-            first = 0.4343*cd(1)
-            flux = rinteg(xref,cd,dummy1,ntau,first)
+            if (scatopt .eq. 0) then
+               call cdcalc (1)  
+               first = 0.4343*cd(1)
+               flux = rinteg(xref,cd,dummy1,ntau,first)
+            else if (scatopt .eq. 1) then
+               call cdcalc_JS (1)
+               flux = adepth
+            endif
             if (iunits .eq. 1) then
                write (nf1out,1003) 1.d-4*wave,flux
             else
@@ -95,9 +100,14 @@ c     extensive line calculations
             d(num) = 0.
          else
             call taukap   
-            call cdcalc (2)
-            first = 0.4343*cd(1)
-            d(num) = rinteg(xref,cd,dummy1,ntau,first)
+            if (scatopt .eq. 0) then
+               call cdcalc (2)
+               first = 0.4343*cd(1)
+               d(num) = rinteg(xref,cd,dummy1,ntau,first)
+            else if (scatopt .eq. 1) then
+               call cdcalc_JS (2)
+               d(num) = adepth
+            endif
          endif
          if (mod(n,10) .eq. 0) then
             if (iraf .eq. 1) then
