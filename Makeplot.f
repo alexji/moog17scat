@@ -12,7 +12,7 @@ c******************************************************************************
       integer sm_device, lscreen, nchars
 
 
-c  open the plot device: screen terminal
+cc  open the plot device: screen terminal
 c      if (plotroutine(1:4) .eq. 'term') then
 c         if (sm_device(smterm) .lt. 0) then
 c            write (array,1001) smterm
@@ -21,9 +21,9 @@ c            write (nf1out,1007) array(1:79)
 c            stop
 c         endif
 c      endif
-
-
-c  open the plot device: hardcopy sent to printer
+c
+c
+cc  open the plot device: hardcopy sent to printer
 c      if (plotroutine(1:4) .eq. 'hard') then
 c         if     (plotroutine(6:9) .eq. 'land') then
 c            if     (sm_device('postland') .lt. 0) then
@@ -42,9 +42,9 @@ c               stop
 c            endif
 c         endif
 c      endif
-
-
-c  open the plot device: postscript file
+c
+c
+cc  open the plot device: postscript file
 c      if (plotroutine(1:4) .eq. 'file') then
 c         if (f5out .eq. 'optional_output_file') then
 c            array = 'Give the file name for the POSTSRIPT plot image: '
@@ -75,31 +75,31 @@ c            istat = ivwrite(lscreen+1,1,array,nchars+9)
 c            stop
 c         endif
 c      endif
-
-
-c  issue standard beginning commands
+c
+c
+cc  issue standard beginning commands
 c      call sm_graphics
 c      call sm_erase
-
-
-c  call the routine that makes the desired plot
-      if     (plotroutine(11:14) .eq. 'cog ') then
-         call cogplot
-      elseif (plotroutine(11:14) .eq. 'abun') then
-         call abunplot
-      elseif (plotroutine(11:14) .eq. 'spec') then
-         call specplot
-      elseif (plotroutine(11:14) .eq. 'bin ') then
-         call binplot
-      elseif (plotroutine(11:14) .eq. 'flux') then
-         call fluxplot
-      endif
-
-
-c  issue standard ending commands; exit normally
-      if (plotroutine(1:4) .eq. 'file') then
-         f5out = 'optional_output_file'
-      endif
+c
+c
+cc  call the routine that makes the desired plot
+c      if     (plotroutine(11:14) .eq. 'cog ') then
+c         call cogplot
+c      elseif (plotroutine(11:14) .eq. 'abun') then
+c         call abunplot
+c      elseif (plotroutine(11:14) .eq. 'spec') then
+c         call specplot
+c      elseif (plotroutine(11:14) .eq. 'bin ') then
+c         call binplot
+c      elseif (plotroutine(11:14) .eq. 'flux') then
+c         call fluxplot
+c      endif
+c
+c
+cc  issue standard ending commands; exit normally
+c      if (plotroutine(1:4) .eq. 'file') then
+c         f5out = 'optional_output_file'
+c      endif
 c      call sm_gflush
 c      if (plotroutine(1:4).eq.'hard' .or. 
 c     .    plotroutine(1:4).eq.'file') call sm_hardcopy

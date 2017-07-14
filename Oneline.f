@@ -8,7 +8,6 @@ c******************************************************************************
       include 'Atmos.com'
       include 'Linex.com'
       include 'Dummy.com'
-      include 'Source.com'
       real*8 dinteg(200)
       data waveold /0.0/                                   
 

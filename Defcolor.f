@@ -20,12 +20,12 @@ c*****assign colors to character arrays
       colors(8) = 'black  '
 
 
-      if (choice.eq.'h' .or. choice.eq.'f' .or.
-     .    choice.eq.'g') then
+c      if (choice.eq.'h' .or. choice.eq.'f' .or.
+c     .    choice.eq.'g') then
 c         call sm_ctype (colors(8))
-      else
+c      else
 c         call sm_ctype (colors(icolor))
-      endif
+c      endif
 
       
       return

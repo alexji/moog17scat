@@ -9,12 +9,12 @@ c******************************************************************************
 
 
 c      call sm_graphics
-      if     (whichwin .eq. '1of1') then
+c      if     (whichwin .eq. '1of1') then
 c         call sm_window (1,1,1,1,1,1)
-      elseif (whichwin .eq. '2of2') then
+c      elseif (whichwin .eq. '2of2') then
 c         call sm_defvar ('y_gutter','0.0')
 c         call sm_window (1,2,1,1,1,1)
-      endif
+c      endif
 c      call sm_curs (xplotpos,yplotpos,ichr)
 c      call sm_gflush
 c      call sm_alpha
