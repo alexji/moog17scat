@@ -8,7 +8,6 @@ c******************************************************************************
       include 'Atmos.com'
       include 'Linex.com'
       include 'Dummy.com'
-      include 'Source.com'
       real*8 dinteg(200)
       data waveold /0.0/                                   
 
@@ -38,15 +37,9 @@ c*****calculate continuous opacity and intensity/flux at line wavelength
          call opacit(2,wave)     
          if (imode.ne.2 .and. modprintopt.ge.2) 
      .      write(nf1out,1002) wave,(kaplam(i),i=1,ntau)
-         if (scatopt .eq. 0) then
-            call cdcalc(1)
-            first = 0.4343*cd(1)
-            flux = rinteg(xref,cd,dummy1,ntau,first)
-         else if (scatopt .eq. 1) then
-            call cdcalc_JS(1)
-c APJ I think this is right based on mirroring the 2011 code
-            flux = Flux_cont
-         endif
+         call cdcalc(1)
+         first = 0.4343*cd(1)
+         flux = rinteg(xref,cd,dummy1,ntau,first)
          if (imode .ne. 2) then
             if (iunits .eq. 1) then
                write (nf1out,1003) 1.d-4*wave,flux
@@ -61,14 +54,9 @@ c*****check the wavelength step size; expand/contract as necessary
       if (wavestep .eq. 0.) then
          wave = wave1(lim1)
          call taukap
-         if (scatopt .eq. 0) then
-            call cdcalc(2)
-            first = 0.4343*cd(1)
-            d(1) = rinteg(xref,cd,dummy1,ntau,first)
-         else if (scatopt .eq. 1) then
-            call cdcalc_JS(2)
-            d(1) = adepth
-         endif
+         call cdcalc(2)
+         first = 0.4343*cd(1)
+         d(1) = rinteg(xref,cd,dummy1,ntau,first)
          do k=1,30
             if (k .eq. 30) then
                write (*,1010) wave
@@ -76,14 +64,9 @@ c*****check the wavelength step size; expand/contract as necessary
             endif
             wave = wave1(lim1) + 5.*st1
             call taukap
-            if (scatopt .eq. 0) then
-               call cdcalc(2)
-               first = 0.4343*cd(1)
-               d(2) = rinteg(xref,cd,dummy1,ntau,first)       
-            else if (scatopt .eq. 1) then
-               call cdcalc_JS(2)
-               d(2) = adepth
-            endif
+            call cdcalc(2)
+            first = 0.4343*cd(1)
+            d(2) = rinteg(xref,cd,dummy1,ntau,first)       
             d2d1 = d(2)/d(1)
             if     (d2d1 .le. 0.2) then
                st1 = st1/1.5
@@ -110,14 +93,9 @@ c     until the depth is very small in the line wing
          dellam(n) =  (n-1)*st1
          wave = wave1(lim1) + dellam(n)
          call taukap
-         if (scatopt .eq. 0) then
-            call cdcalc(2)
-            first = 0.4343*cd(1)
-            d(n) = rinteg(xref,cd,dummy1,ntau,first)       
-         else if (scatopt .eq. 1) then
-            call cdcalc_JS(2)
-            d(n) = adepth
-         endif
+         call cdcalc(2)
+         first = 0.4343*cd(1)
+         d(n) = rinteg(xref,cd,dummy1,ntau,first)       
          if (linprintopt.ge.3 .and. n.eq.1 .and. imode.eq.2) then
             do i=1,ntau
                dummy1(i) = xref(i)*cd(i)

@@ -10,7 +10,6 @@ c******************************************************************************
       include 'Mol.com'
       include 'Pstuff.com'
       include 'Dummy.com'
-      include 'Source.com'
       real*8 taunu0(100)
       character*4 ion(3)
       data ion/' I  ', ' II ', ' III'/

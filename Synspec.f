@@ -10,7 +10,6 @@ c******************************************************************************
       include 'Factor.com'
       include 'Pstuff.com'
       include 'Dummy.com'
-      include 'Source.com'
       real*8 dd(5000)
 
 c*****initialize the synthesis
@@ -62,14 +61,9 @@ c     spectrum wavelength, if needed
             call opacit (2,wave)    
             if (modprintopt .ge. 2) 
      .          write (nf1out,1001) wave,(kaplam(i),i=1,ntau)
-            if (scatopt .eq. 0) then
-               call cdcalc (1)  
-               first = 0.4343*cd(1)
-               flux = rinteg(xref,cd,dummy1,ntau,first)
-            else if (scatopt .eq. 1) then
-               call cdcalc_JS (1)
-               flux = adepth
-            endif
+            call cdcalc (1)  
+            first = 0.4343*cd(1)
+            flux = rinteg(xref,cd,dummy1,ntau,first)
             if (iunits .eq. 1) then
                write (nf1out,1003) 1.d-4*wave,flux
             else
@@ -100,14 +94,9 @@ c     extensive line calculations
             d(num) = 0.
          else
             call taukap   
-            if (scatopt .eq. 0) then
-               call cdcalc (2)
-               first = 0.4343*cd(1)
-               d(num) = rinteg(xref,cd,dummy1,ntau,first)
-            else if (scatopt .eq. 1) then
-               call cdcalc_JS (2)
-               d(num) = adepth
-            endif
+            call cdcalc (2)
+            first = 0.4343*cd(1)
+            d(num) = rinteg(xref,cd,dummy1,ntau,first)
          endif
          if (mod(n,10) .eq. 0) then
             if (iraf .eq. 1) then
@@ -169,7 +158,8 @@ c*****format statements
 1101  format (/'SPECTRUM DEPTHS')
 1102  format (4f11.3)
 1103  format (4f10.7)
-1104  format ('SIMPLE  =    t'/'NAXIS   =     1'/'NAXIS1  = ',i10,/
+1104  format ('SIMPLE  =                    T / Fits standard'/
+     .        'NAXIS   =     1'/'NAXIS1  = ',i10,/
      .        'W0      =',f10.4/'CRVAL1  =',f10.4/'WPC     =',f10.4/
      .        'CDELT1  =',f10.4)
 1105  format (16HORIGIN  = 'moog'/21HDATA-TYP= 'synthetic'/
