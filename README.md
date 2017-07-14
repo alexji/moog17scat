@@ -11,3 +11,6 @@ However, MOOG has since experienced several upgrades, with a big update coming i
 
 Here, I have taken the publicly available version of MOOG (which was available from Jul 2014-Feb 2017; the 2017 version is mostly the same)
 and patched in the code written by Jennifer Sobeck.
+It can be turned on by setting "scat 1" in the configuration (batch.par) files.
+
+I take absolutely no credit (or responsibility) for this code, as others have done all the heavy lifting! But I hope it saves someone out there some time.
