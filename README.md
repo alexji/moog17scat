@@ -14,3 +14,7 @@ and patched in the code written by Jennifer Sobeck.
 It can be turned on by setting "scat 1" in the configuration (batch.par) files.
 
 I take absolutely no credit (or responsibility) for this code, as others have done all the heavy lifting! But I hope it saves someone out there some time.
+
+
+WARNING:
+Blends.f and Ewfind.f were not modified in the 2011 version. I may be mistaken, but it does not appear that they use Sobeck's scattering. I will eventually fix this, but this likely affected anything that used the blends driver for bluer lines in metal-poor stars (e.g. scandium).
