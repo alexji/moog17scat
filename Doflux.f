@@ -51,9 +51,14 @@ c*****compute the flux curve
 1     call opacit (2,wave)
       if (modprintopt .ge. 2) 
      .    write(nf1out,1002) wave,(kaplam(i),i=1,ntau)
-      call cdcalc (1)
-      first = 0.4343*cd(1)
-      flux = rinteg(xref,cd,dummy1,ntau,first)
+      if (scatopt .eq. 0) then
+         call cdcalc (1)
+         first = 0.4343*cd(1)
+         flux = rinteg(xref,cd,dummy1,ntau,first)
+      else if (scatopt .eq. 1) then
+         call cdcalc_JS (1)
+         flux = Flux_cont_moog
+      endif
       if (flux .le. 0.1) flux = 0.
       if (iunits .eq. 1) then
          write (nf1out,1003) 1.d-4*wave,flux
