@@ -10,6 +10,7 @@ c******************************************************************************
       include 'Factor.com'
       include 'Pstuff.com'
       include 'Dummy.com'
+      include 'Source.com'
       real*8 dd(5000)
 
 c*****initialize the synthesis
