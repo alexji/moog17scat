@@ -19,13 +19,14 @@ OBJECTS = Abfind.o Abpop.o Abunplot.o Batom.o Begin.o Binary.o \
         Pltflux.o Pltspec.o Pointcurs.o Prinfo.o Putasci.o Readobs.o \
         Rinteg.o Smooth.o Specplot.o Stats.o Sunder.o Synpop.o Synspec.o \
         Synth.o Tablepop.o Taukap.o Total.o Trudamp.o Ucalc.o Vargauss.o \
-        Vmacro.o Voigt.o Wavecalc.o Weedout.o Writenumber.o
-
+        Vmacro.o Voigt.o Wavecalc.o Weedout.o Writenumber.o \
+	Sourcefunc_scat_cont.o AngWeight.o \
+	Sourcefunc_scat_line.o Cdcalc_JS.o
 
 #     here are the common files
 COMMON =  Atmos.com Dummy.com Equivs.com Factor.com Kappa.com Linex.com \
 	Mol.com Multistar.com Obspars.com Plotval.com Pstuff.com \
-	Quants.com Multimod.com Dampdat.com
+	Quants.com Multimod.com Dampdat.com Source.com
 
 CC = cc
 #FC = g77 -w
