@@ -44,7 +44,6 @@ c*****the computed RW
          endif
       enddo
 
-
 c*****are the observed and computed RWs too different?  if so, iterate 
 c*****by adjusting the assumed gf, and recompute the line.
 c*****for strong lines, the iterations are slowed down by using the

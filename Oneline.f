@@ -8,6 +8,7 @@ c******************************************************************************
       include 'Atmos.com'
       include 'Linex.com'
       include 'Dummy.com'
+      include 'Source.com'
       real*8 dinteg(200)
       data waveold /0.0/                                   
 
@@ -54,7 +55,6 @@ c APJ I think this is right based on mirroring the 2011 code
             endif
          endif
       endif
-
 
 c*****check the wavelength step size; expand/contract as necessary
       if (wavestep .eq. 0.) then
@@ -116,6 +116,10 @@ c     until the depth is very small in the line wing
          else
             call cdcalc_JS(2)
             d(n) = adepth
+c APJ again not sure why this is true but matching JS 2011 version
+            do i=1,ntau
+               cd(i) = adepth
+            enddo
          endif
          if (linprintopt.ge.3 .and. n.eq.1 .and. imode.eq.2) then
             do i=1,ntau
