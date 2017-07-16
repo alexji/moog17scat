@@ -19,7 +19,7 @@ c     be able to pull in auxiliary data files; executing 'make' will
 c     generate a reminder of this
       write (moogpath,1001)
       moogpath = 
-     .  '/Users/alexji/lib/moogfeb2017'
+     .  '/Users/alexji/lib/moog17scat'
 
 
 c*****What kind of machine are you using?  Possible ones are:
