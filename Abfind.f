@@ -95,7 +95,6 @@ c     line equivalent width; here is the code for ordinary species
          call lineinfo (3)
       else
 
-
 c*****and here is the code for species involved in molecular equilibrium;
 c     this procedure is iterated until input and output abundances are in 
 c     agreement
