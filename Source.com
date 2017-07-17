@@ -8,8 +8,9 @@ c     of the source function (and associated subroutines Sourcefunc_*, Cdcalc, e
      .                S_cont(100), S_line(100),
      .                B_planck(100),
      .                J_cont(100), J_line(100),
-     .                S_cont_CF(100) 
-      integer         mmu
+     .                Fluxarray_cont(100), 
+     .                Fluxarray_line(100)
+      integer         mmu, nfr
 
       common/intense/ dtau1,
      .                wtmu, mu, Flux_line, 
@@ -17,6 +18,6 @@ c     of the source function (and associated subroutines Sourcefunc_*, Cdcalc, e
      .                S_cont, S_line,
      . 		      B_planck,
      .                J_cont, J_line,
-     .                S_cont_CF,
-     .                mmu
+     .                Fluxarray_cont, Fluxarray_line,
+     .                mmu, nfr
 
