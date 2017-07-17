@@ -81,7 +81,8 @@ c*****check the wavelength step size; expand/contract as necessary
                d(2) = rinteg(xref,cd,dummy1,ntau,first)       
             else
                call cdcalc_JS(2)
-               d(2) = adepth
+c*****This was changed in the version Terese has
+               d(2) = 0.4343*adepth
             endif
             d2d1 = d(2)/d(1)
             if     (d2d1 .le. 0.2) then
