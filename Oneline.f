@@ -33,7 +33,8 @@ c*****used in synpop
 
 c*****calculate continuous opacity and intensity/flux at line wavelength 
       wave = wave1(lim1)                                                
-      if (abs(wave-waveold) .gt. 30.) then
+c*****APJ have to call this for every line when using scattering!
+      if ((scatopt .eq. 1) .or. (abs(wave-waveold) .gt. 30.)) then
          waveold = wave
          call opacit(2,wave)     
          if (imode.ne.2 .and. modprintopt.ge.2) 
@@ -44,7 +45,7 @@ c*****calculate continuous opacity and intensity/flux at line wavelength
             flux = rinteg(xref,cd,dummy1,ntau,first)
          else
             call cdcalc_JS(1)
-c APJ I think this is right based on mirroring the 2011 code
+c*****APJ I think this is right based on mirroring the 2011 code
             flux = Flux_cont
          endif
          if (imode .ne. 2) then
