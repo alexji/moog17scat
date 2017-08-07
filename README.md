@@ -1,6 +1,8 @@
 # moog17scat
 MOOG 2017 version with scattering
 
+NOTE: There is currently a bug in the scattering such that it doesn't give correct abundances for some lines. I am currently investigating and will fix it soon.
+
 MOOG is a radiative transfer code for stellar abundances written by Chris Sneden.
 http://www.as.utexas.edu/~chris/moog.html
 
