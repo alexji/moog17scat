@@ -18,6 +18,7 @@ c     the line profile
       maxsteps = 100
 
 
+
 c*****get started; calculate an initial step size; wavestep only is 
 c*****used in synpop
       if (imode .eq. 0) gf1(ncurve) = gf(lim1)                          
@@ -29,7 +30,6 @@ c*****used in synpop
          st1 = wavestep
       endif
       storig = st1
-
 
 c*****calculate continuous opacity and intensity/flux at line wavelength 
       wave = wave1(lim1)                                                
@@ -67,7 +67,7 @@ c*****check the wavelength step size; expand/contract as necessary
             d(1) = rinteg(xref,cd,dummy1,ntau,first)
          else
             call cdcalc_JS(2)
-            d(1) = adepth
+            d(1) = 0.4343*adepth
          endif
          do k=1,30
             if (k .eq. 30) then
@@ -82,7 +82,7 @@ c*****check the wavelength step size; expand/contract as necessary
                d(2) = rinteg(xref,cd,dummy1,ntau,first)       
             else
                call cdcalc_JS(2)
-               d(2) = adepth
+               d(2) = 0.4343*adepth
             endif
             d2d1 = d(2)/d(1)
             if     (d2d1 .le. 0.2) then
@@ -202,7 +202,6 @@ c*****format statements
 1010  format ('CANNOT DECIDE ON LINE WAVELENGTH ',
      .        'STEP SIZE FOR', f10.2, '   I QUIT!')
 1011  format ('original and final wavelength step size: ', 2f8.4)
-
       end                                                               
 
 

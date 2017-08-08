@@ -68,7 +68,7 @@ c     spectrum wavelength, if needed
                flux = rinteg(xref,cd,dummy1,ntau,first)
             else
                call cdcalc_JS (1)
-               flux = adepth
+               flux = 1-adepth
             endif
             if (iunits .eq. 1) then
                write (nf1out,1003) 1.d-4*wave,flux
