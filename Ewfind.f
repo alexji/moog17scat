@@ -113,6 +113,7 @@ c           call prinfo (lscreen)
 c*****(re)compute the line optical depth at line center and the C_d curve
          do i=1,ntau
             kapnu(i) = kapnu0(lim1,i)
+c*****Computed in subroutine Nearly
             dummy1(i) = tauref(i)*kapnu(i)/(0.4343*kapref(i))
          enddo
          first = tauref(1)*kapnu(1)/kapref(1)
@@ -124,7 +125,14 @@ c*****(re)compute the line optical depth at line center and the C_d curve
          do i=1,ntau
             taunu(i) = taunu0(i)
          enddo
-         call cdcalc (2)
+         if (scatopt .eq. 0) then
+            call cdcalc (2)
+         else
+            call cdcalc_JS (2)
+            do i=1,ntau
+               cd(i) = adepth
+            enddo
+         endif
          if (linprintopt .ge. 2) then
             write (nf2out,1010) 
             write (nf2out,1011) (i, rhox(i), xref(i), int(t(i)), 

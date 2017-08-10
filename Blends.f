@@ -12,7 +12,8 @@ c******************************************************************************
       include 'Mol.com'
       include 'Pstuff.com'
       include 'Dummy.com'
- 
+      include 'Source.com'
+      
 
 c*****examine the parameter file
       call params
@@ -191,9 +192,18 @@ c*****here is where some auxiliary things like mean depth are computed
          if (lim1.eq.lim2 .and. linprintopt.ge.3) then
             wave = wave1(lim1)
             call taukap
-            call cdcalc(2)
-            first = 0.4343*cd(1)
-            d(1) = rinteg(xref,cd,dummy1,ntau,first)
+            if (scatopt .eq. 0) then
+               call cdcalc(2)
+               first = 0.4343*cd(1)
+               d(1) = rinteg(xref,cd,dummy1,ntau,first)
+            else
+               call cdcalc_JS(2)
+               first = 0.4343*adepth
+               d(1) = adepth
+               do i=1, ntau
+                  cd(i) = adepth
+               enddo
+            endif
             do i=1,ntau
                dummy1(i) = xref(i)*cd(i)
             enddo
