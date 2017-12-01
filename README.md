@@ -16,11 +16,13 @@ Here, I have taken the publicly available version of MOOG (from Feb 2017)
 and patched in the code written by Jennifer Sobeck.
 It can be turned on by setting "scat 1" in the configuration (batch.par) files.
 
-I take absolutely no credit (or responsibility) for this code, as others have done all the heavy lifting! But I hope it saves someone out there some time.
-
 WARNING:
 Blends.f and Ewfind.f were not modified in the 2011 version I have. I may be mistaken, but it does not appear that they use Sobeck's scattering. I will eventually fix this, but this likely affected anything that used the blends driver for bluer lines (<4500A) in metal-poor stars.
 UPDATE: I have learned that some versions of the scattering code did have Blends and Ewfind fixed. If you would like to check your version, you can do so by looking to see if "cdcalc_JS" is in Blends.f or Ewfind.f. If so, then you are probably good!
+
+## Citation
+If you use this code in a paper, please cite Sneden 1973 and Sobeck et al. 2011, AJ 141, 175.
+I would also appreciate if you include a link to this page in a footnote (www.github.com/alexji/moog17scat).
 
 ## Installation Instructions
 Instructions copied from http://www.as.utexas.edu/~chris/moog.html
