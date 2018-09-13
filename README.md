@@ -1,9 +1,24 @@
 # moog17scat
 MOOG 2017 version with scattering
 
-IMPORTANT UPDATE: Aug 7, 2017.
+## IMPORTANT UPDATE: Sep 13, 2018.
+A bug was introduced with the "trudamp" parameter in the 2014 refactoring.
+It was turned on by default, rather than kept off.
+This is now fixed to be off by default.
+If you would like to turn trudamp on, use "trudamp 1" in the parameters.
+
+There is also a typo bug in Trudamp.f that has been fixed for Ca3933 (thanks to Rana Ezzeddine for identifying the bug).
+
+The bug only affected these specific lines (see Damping.f and Trudamp.f):
+* Ca II (3933, 8498, 8542, 8662)
+* CH (3693)
+* Ca I (6717, 6318, 6343, 6361)
+* Ca I autoionization (6318, 6343, 6361)
+
+## IMPORTANT UPDATE: Aug 7, 2017.
 I mistakenly introduced a bug causing problems with abfind. It is now fixed.
 
+## MOOG
 MOOG is a radiative transfer code for stellar abundances written by Chris Sneden.
 http://www.as.utexas.edu/~chris/moog.html
 
