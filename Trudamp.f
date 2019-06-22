@@ -28,7 +28,7 @@ c*****Ca II "IR triplet" lines at the Ca II K line at 3934 A
             gnature = gammaa + 0.5*1.5d-9*t(i)**(1/3)*numdens(1,1,i)
             gvander = 1.6d-8 * (t(i)/5000.)**0.3 * numdens(1,1,i)
             gstark = 3.0d-6 * ne(i)
-            gammadamp = anature + gvander + gstark
+            gammadamp = gnature + gvander + gstark
             a(j,i) = gammadamp*wave1(j)*1.0e-8/(12.56636*dopp(j,i))
             write (nf1out,1001) gnature, gstark, gvander,
      .                          gammadamp, a(j,i)             

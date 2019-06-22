@@ -19,7 +19,7 @@ c******************************************************************************
 c*****for a few lines, explicit detailed broadening terms have 
 c     appeared in the literature, and so do these lines with a 
 c     sepaarate subroutine
-      if (itru .eq. 0) then
+      if (itru .eq. 1) then
 c     Ca II
          if (iatom10 .eq. 201) then
             if (iwave .eq. 8498 .or.

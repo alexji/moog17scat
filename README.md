@@ -1,9 +1,24 @@
 # moog17scat
 MOOG 2017 version with scattering
 
-IMPORTANT UPDATE: Aug 7, 2017.
+## IMPORTANT UPDATE: Sep 13, 2018.
+A bug was introduced with the "trudamp" parameter in the 2014 refactoring.
+It was turned on by default, rather than kept off.
+This is now fixed to be off by default.
+If you would like to turn trudamp on, use "trudamp 1" in the parameters.
+
+There is also a typo bug in Trudamp.f that has been fixed for Ca3933 (thanks to Rana Ezzeddine for identifying the bug).
+
+The bug only affected these specific lines (see Damping.f and Trudamp.f):
+* Ca II (3933, 8498, 8542, 8662)
+* CH (3693)
+* Ca I (6717, 6318, 6343, 6361)
+* Ca I autoionization (6318, 6343, 6361)
+
+## IMPORTANT UPDATE: Aug 7, 2017.
 I mistakenly introduced a bug causing problems with abfind. It is now fixed.
 
+## MOOG
 MOOG is a radiative transfer code for stellar abundances written by Chris Sneden.
 http://www.as.utexas.edu/~chris/moog.html
 
@@ -16,11 +31,13 @@ Here, I have taken the publicly available version of MOOG (from Feb 2017)
 and patched in the code written by Jennifer Sobeck.
 It can be turned on by setting "scat 1" in the configuration (batch.par) files.
 
-I take absolutely no credit (or responsibility) for this code, as others have done all the heavy lifting! But I hope it saves someone out there some time.
-
 WARNING:
 Blends.f and Ewfind.f were not modified in the 2011 version I have. I may be mistaken, but it does not appear that they use Sobeck's scattering. I will eventually fix this, but this likely affected anything that used the blends driver for bluer lines (<4500A) in metal-poor stars.
 UPDATE: I have learned that some versions of the scattering code did have Blends and Ewfind fixed. If you would like to check your version, you can do so by looking to see if "cdcalc_JS" is in Blends.f or Ewfind.f. If so, then you are probably good!
+
+## Citation
+If you use this code in a paper, please cite Sneden 1973 and Sobeck et al. 2011, AJ 141, 175.
+I would also appreciate if you include a link to this page in a footnote (www.github.com/alexji/moog17scat).
 
 ## Installation Instructions
 Instructions copied from http://www.as.utexas.edu/~chris/moog.html
