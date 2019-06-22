@@ -198,11 +198,11 @@ c*****end the abundance computations
 
 
 c*****format statements
-1001  format (/'wavelength        EP     logGF     ident',
+1001  format ('wavelength        EP     logGF     ident',
      .        '     Abund    EWcalc')
 1002  format (a80)
-1003  format (f10.2,f10.2,f10.3,'     ',a2,a3,f10.2,f10.1/)
-1004  format (f10.2, f10.2, f10.3, 6x, a2, a2, f10.2, f10.1/)
+1003  format (f10.2,f10.2,f10.3,'     ',a2,a3,f10.2,f10.1)
+1004  format (f10.2, f10.2, f10.3, 6x, a2, a2, f10.2, f10.1)
 1010     format (' i', 5x, 'rhox', 2x, 'xref', 5x, 'T', 5x, 'Pgas', 
      .           6x, 'rho', 3x, 'kaplam', 3x, 'taulam',
      .           3x, 'taunu0', 8x, 'Cd')
