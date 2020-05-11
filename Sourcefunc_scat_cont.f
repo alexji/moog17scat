@@ -16,14 +16,11 @@ c***  Local Arrays/Variables
       real*8  ddm(100), alo(100), ood(100)
       real*8  eta(100), etat(100)
       real*8  Scat_opacity(100) 
-      real*8  ddmm(100), dtau1MI(100) 
       real*8  Therm_opacity(100)
       real*8  dtau(100), WOP(100), W1(100), W0(100)
       real*8  J_cont_OLD(100)
-      real*8  J_cont_moog(100), S_cont_moog(100)
       real*8  exptau2(100)
       integer IT
-c     real*8  J_cont(100), S_cont(100)
 
 c*** DETERMINE: rhox for MODELS that do not contain these values.  An additional constant might be necessary as kappa does vary.
       do i=1, ntau
@@ -56,8 +53,6 @@ c*** SET-UP: delta_tau variable (name: dtau1).
         ddm(i)     = 0.5 * abs((rhox(i) - rhox(i-1)))
         dtau1(i)   = ddm(i) * (ood(i-1) + ood(i))
         if (i .eq. ntau) cycle
-c        ddmm(i)    = 0.25 * (rhox(i+1) - rhox(i-1))
-c        dtau1MI(i) = 1. / (ddmm(i) * (ood(i-1) + ood(i+1)))
       enddo
 
 c*** SET-UP: Scat_opacity, Therm_opacity, and Thomson terms.  
@@ -72,7 +67,8 @@ c    As is standard, Therm_opacity(i) = kaplam(i) - Scat_opacity(i).
 c*** ACCELERATION OF CONVERGENCE: To accelerate the convergence of the solution of the RTE, it is necessary to employ the technique of 
 c    accelerated lambda iteration (ALI).  The steps below set-up the lambda operator.  
 c    Convergence Requirements (original values: Converg_iter = 1.e-5 and Max_iter = 25):
-      Converg_iter = 2.E-3
+c    APJ changed from 2.E-3 to 5.E-4
+      Converg_iter = 5.E-4
       Max_iter     = 65
 c     Gamma controls the amount of acceleration.
 c     Gamma = 0 : No Acceleration
@@ -195,25 +191,8 @@ c     -----------------------
       enddo
 
 
-c***  CONVERT variables to MOOG/Edmonds format/units (if desired).
-       do i=1,ntau
-          S_cont_moog(i) = 2.9977518E26*(1/(wave**2))
-     >                *S_cont(i)
-          J_cont_moog(i) = 2.9977518E26*(1/(wave**2))
-     >                *J_cont(i)
-       enddo
-       Flux_cont_moog = 2.9977518E26*(1/(wave**2))
-     >             *Flux_cont
-
 c     ---------------------
 c***  END of ROUTINE
 c     ---------------------           
       return
       end
-
-
-c***  Tabulation of the flux due to pure absorption (not requisite).
-c      Flux_pureabs = Flux_pureabs + B_planck(1)
-c      Flux_pureabs_moog =  2.9977518E26*(1/(wave**2))
-c     >             *Flux_pureabs
-

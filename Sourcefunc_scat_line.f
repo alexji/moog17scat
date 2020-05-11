@@ -13,43 +13,12 @@ c******************************************************************
       data jentry /0/
 
 c***  Local Arrays/Variables
-      real*8  ddm(100), alo(100), ood(100), ddmm(100), dtau1MI(100)
+      real*8  ddm(100), alo(100), ood(100)
       real*8  Thomson_line(100), Scat_opacity(100), Therm_opacity(100)
       real*8  eta(100), etat(100)
       real*8  dtau(100), WOP(100), W1(100), W0(100)
-      real*8  J_line_OLD(100), J_line_moog(100), S_line_MOOG(100)
-      real*8  CF_U_tau(100), CF_U_tauref(100), CF_U_tauref_FIN(100)
-      real*8  Factor_CF(100), tau_CF(100)
-      real*8  kap_ratio_CF(100), exptau_CF(100), tau_ratio(100)
+      real*8  J_line_OLD(100)
       integer IT
-
-c***  Frequency loop: Definitions (real*8  pisqi, xfr(20), phi(20), wfr(20))
-c      pisqi = 0.5641895835
-c      xmax  = 5.
-c      nfr   = 2.
-c      if(xmax.le.0. .or. nfr.le.1) then
-c         nfr    = 1.
-c         phi(1) = 1.
-c         wfr(1) = 1.
-c         return
-c      endif
-c      dx  = xmax / dble(nfr-1)
-c      sum = 0
-c***  Freqency loop: Absorption profile assumed to be a simple Doppler profile
-c      do ifr=1, nfr
-c         x       = (ifr-1.)*dx
-c         xfr(ifr)= x
-c         phi(ifr)= exp(-x*x)*pisqi
-c         wfr(ifr)= dx
-c         if(ifr.eq.1.or.ifr.eq.nfr) then 
-c            wfr(ifr)= dx * 0.5
-c         endif
-c         sum = sum + phi(ifr)*wfr(ifr)
-c      enddo
-c***  Frequency loop: Renormalization of frequency quadrature weights
-c      do ifr=1, nfr
-c         wfr(ifr) = wfr(ifr)/sum
-c      enddo
 
 c*** DETERMINE: rhox for MODELS that do not contain these values.  An additional constant might be necessary as kappa does vary.
       do i=1, ntau
@@ -72,8 +41,6 @@ c    Called initially by Sourcefunc_scat_cont.f.  Duplicate call and probably sh
                xxx = 0
                do i=1,mmu
                    xxx = xxx + wtmu(i)
-c                   write (0,'(A,1X,I2,1x,2p7e10.2)')
-c     >             'results: i wtmu mu',i,wtmu(i),mu(i)
                enddo
          jentry = 1     
       endif
@@ -85,10 +52,6 @@ c*** SET-UP: delta_tau variable (name: dtau1).
         ddm(i)     = 0.5 * abs((rhox(i) - rhox(i-1)))
         dtau1(i)   = ddm(i) * (ood(i-1) + ood(i))
         if (i .eq. ntau) cycle
-c        ddmm(i)    = 0.25 * (rhox(i+1) - rhox(i-1))
-c        dtau1MI(i) = 1. / (ddmm(i) * (ood(i-1) + ood(i+1)))
-c       write (0,'(A,1X, I2, F12.5, 1X, 1p7e10.2)')
-c     >       'LINE: tau ood dtau', i, ood(i), dtau1(i)
       enddo
 
 c*** SET-UP: Scat_opacity, Therm_opacity, and Thomson terms.  
@@ -103,7 +66,8 @@ c    As is standard, Therm_opacity(i) = kaplam(i) - Scat_opacity(i).
 c*** ACCELERATION OF CONVERGENCE: To accelerate the convergence of the solution of the RTE, it is necessary to employ the technique of 
 c    accelerated lambda iteration (ALI).  The steps below set-up the lambda operator.  
 c    Convergence Requirements (original values: Converg_iter = 1.e-5 and Max_iter = 25):
-      Converg_iter = 2.E-3
+c    APJ changed from 2.E-3 to 5.E-4
+      Converg_iter = 5.E-4
       Max_iter     = 65
 c     Gamma controls the amount of acceleration.
 c     Gamma = 0 : No Acceleration
@@ -196,8 +160,6 @@ c     -----------------
 c***  END of ANGLE loop
 c     -----------------
         enddo
-c     PROPOSED Frequency loop code: Flux_line_freq(ifr) = Flux_line; do i=1, ntau; J_line_freq(i) = J_line_freq(i) + J_line(i)*wfr(ifr)*phi(ifr); enddo
-c     PROPOSED END of Frequency Loop
 
 c***  ACCELERATION OF CONVERGENCE: Calculate new etat and prepare to exit iteration loop (note ALI applied)
         q_max = 0.
@@ -228,45 +190,6 @@ c     ---------------------
 c***  END of ITERATION loop
 c     ---------------------
       enddo
-
-c     Attempt to determine the contribution function to the line with the methodology of Albrow & Cottrell (1996).
-c     Note that the line soure function, S_line, does include some continuum quantity values (e.g., kaplam).
-      Factor_CF(i)       = 0.
-      CF_U_tauref_FIN(i) = 0.
-
-      do i =1,ntau
-         tau_CF(i)       = (kaplam(i) + kapnu(i)) * rhox(i)
-         kap_ratio_CF(i) = kaplam(i)/(kaplam(i)+kapnu(i))
-      enddo
-c      do j=1,mmu
-         do i =1,ntau
-c            tau_ratio(i)   = tau_CF(i)/mu(j)
-c            exptau_CF(i)   = dexp(-tau_ratio(i))
-c            Factor_CF(i)   = exptau_CF(i)*wtmu(j)*mu(j)
-            CF_U_tau(i)    = kap_ratio_CF(i) 
-     >                       * (J_cont(i)-S_line(i))
-c     >                       * 
-            CF_U_tauref(i) = (tauref(i)*kapnu(i))/(0.4343*kapref(i))
-     >                       * (J_cont(i)-S_line(i))
-c     >                       * Factor_CF(i)          
-c            CF_U_tauref_FIN(i) = CF_U_tauref_FIN(i)+CF_U_tauref(i)
-         enddo
-c       enddo
-
-c       do i=1,ntau                  
-c          write (0,'(A,1X,I2,1x,F12.3,1x,2(1p7e10.3))')
-c     >             'i wave C_U_tau C_U_tauref:',
-c     >             i,wave,CF_U_tau(i),CF_U_tauref(i) 
-c        enddo
-c        pause
-
-c***  CONVERT variables to MOOG/Edmonds format/units (if desired).
-      do i=1,ntau
-         S_line_moog(i) = 2.9977518E26*(1/(wave**2))*S_line(i)
-         J_line_moog(i) = 2.9977518E26*(1/(wave**2))*J_line(i)
-      enddo
-      Flux_line_moog = 2.9977518E26*(1/(wave**2))*Flux_cont
-
 
 c     ---------------------
 c***  END of ROUTINE
