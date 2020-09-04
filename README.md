@@ -54,3 +54,19 @@ Instructions copied from http://www.as.utexas.edu/~chris/moog.html
   * You can edit your `.cshrc`, `.bashrc`, and/or `.bash_profile` to add this new directory.
   * For example, my `.bash_profile` has `export PATH="/Users/alexji/lib/moog17scat:$PATH"`
   * Check this by opening a new terminal and typing `which MOOGSILENT`. It should point to the correct place.
+
+Some notes from Vini Placco about installing on Catalina.
+```
+I just compiled moog17scat on a fresh macOS Catalina installation. I had two small hiccups:
+
+The gfortran I used at first came from gcc 10.2.0 (from homebrew). When I used this version, I got a few compilation errors on OpacHydrogen.f. Instead of messing with the code, I installed an earlier version of gfortran, which I knew worked:
+
+brew install gcc@5
+
+Then, on the Makefile.macdesk I have:
+
+FC = /usr/local/Cellar/gcc\@5/5.5.0_4/bin/gfortran-5 -Wall -fno-range-check -w -ff2c
+This compiled everything without errors or warnings.
+
+I also had an error on the AQLIB library, and replacing: -L$(AQLIB) -laquaterm with -L$(AQLIB) -framework AquaTerm solved the problem.
+```
