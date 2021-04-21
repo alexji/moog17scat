@@ -1,6 +1,10 @@
 # moog17scat
 MOOG 2017 version with scattering
 
+## Comment: Apr 20, 2021.
+I have been bothered by some of the "ringing" that happens at the ~0.005 normalized flux level when scattering is turned on, which didn't occur before in the 2011 Sobeck version. Some digging shows that in `Synspec.f` line 60, the wavelength differences threshold to recompute continuum quantities used to be 0.0001 instead of 0.001.
+Changing this does appear to remove the ringing features, but it require many more calls to the continuum source function, so it's slower. For low S/N spectra this does not matter, but for high S/N spectra (around 100) you will want to change this parameter and recompile when computing synthetic spectra.
+
 ## IMPORTANT UPDATE: Sep 13, 2018.
 A bug was introduced with the "trudamp" parameter in the 2014 refactoring.
 It was turned on by default, rather than kept off.
