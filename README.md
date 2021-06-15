@@ -74,3 +74,16 @@ This compiled everything without errors or warnings.
 
 I also had an error on the AQLIB library, and replacing: -L$(AQLIB) -laquaterm with -L$(AQLIB) -framework AquaTerm solved the problem.
 ```
+
+Alex notes (2021-06-15):
+```
+The error Vini finds is in OpacHydrogen.f where a scalar is being passed into a variable that expects an array. Older fortran compilers had no problem with this (would throw a warning) but newer ones throw an error.
+
+In newer versions of gfortran (v10 and above) you can get around this by adding this flag to the fortran compilation.
+-fallow-argument-mismatch
+
+e.g. change Makefile.maclapsilent to have:
+FC = gfortran -fno-range-check -w -fallow-argument-mismatch
+
+Thanks to Jandrie Rodriguez for helping debug this.
+```
