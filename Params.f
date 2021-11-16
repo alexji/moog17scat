@@ -187,7 +187,7 @@ c  in each RUN; they must be reset each time.
       numisosyn = 0
       newnumiso = 0
       newnumisosyn = 0
-      do i=1,20
+      do i=1,200
          isotope(i) = 0.
          newisotope(i) = 0.
          do j=1,5
@@ -605,7 +605,7 @@ c  minimum error check:  numatomsyn must equal numisosyn or code will stop
          numisosyn = 0
          newnumiso = 0
          newnumisosyn = 0
-         do i=1,20
+         do i=1,200
             isotope(i) = 0.
             newisotope(i) = 0.
             do j=1,5

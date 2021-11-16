@@ -4,6 +4,9 @@ MOOG 2017 version with scattering
 ## UPDATE: Nov 16, 2021
 I have updated `Synspec.f` following the comment below. I think it is better to change this than not.
 
+Additionally, I have increased the hardcoded number of isotopes (it used to be 20, now it is 200).
+Previously you would have been safe up to 40 isotopes if you did not use the MOOG GUI.
+
 
 ## Comment: Apr 20, 2021.
 I have been bothered by some of the "ringing" that happens at the ~0.005 normalized flux level when scattering is turned on, which didn't occur before in the 2011 Sobeck version. Some digging shows that in `Synspec.f` line 60, the wavelength differences threshold to recompute continuum quantities used to be 0.0001 instead of 0.001.
