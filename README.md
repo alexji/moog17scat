@@ -7,6 +7,11 @@ I have updated `Synspec.f` following the comment below. I think it is better to 
 Additionally, I have increased the hardcoded number of isotopes (it used to be 20, now it is 200).
 Previously you would have been safe up to 40 isotopes if you did not use the MOOG GUI.
 
+A question often asked is the differences between this and [Chris Sneden's](https://www.as.utexas.edu/~chris/moog.html) most recent [Nov 2019](https://www.as.utexas.edu/~chris/MOOGNOV2019.tar.gz) code.
+In short, the recent update improved treatment of molecules (H2O, CO2), a linelist I/O setting that stopped automatic conversion of gf to loggf, and synthetic stellar populations (see [the documentation](https://www.as.utexas.edu/~chris/codes/WRITEnov2019.pdf)).
+However, it does not have the updates described below, most notably not including scattering (despite the documentation saying otherwise).
+So, if you are interested in similar science as me (abundances in metal-poor giants in optical wavelengths) I would recommend sticking to moog17scat.
+
 
 ## Comment: Apr 20, 2021.
 I have been bothered by some of the "ringing" that happens at the ~0.005 normalized flux level when scattering is turned on, which didn't occur before in the 2011 Sobeck version. Some digging shows that in `Synspec.f` line 60, the wavelength differences threshold to recompute continuum quantities used to be 0.0001 instead of 0.001.
