@@ -57,7 +57,7 @@ c     spectrum wavelength, if needed
       do n=1,kount
          num = num + 1
          wave = oldstart + (n-1)*step
-         if (dabs(wave-wavl)/wave .ge. 0.001) then
+         if (dabs(wave-wavl)/wave .ge. 0.0001) then
             wavl = wave   
             call opacit (2,wave)    
             if (modprintopt .ge. 2) 

@@ -10,8 +10,8 @@ c******************************************************************************
      .               numpecatom, newnumpecatom,
      .               numatomsyn, newnumatomsyn,   
      .               isynth, ninetynineflag
-      real*8         isotope(20), newisotope(20),
-     .               isoabund(20,5), newisoabund(20,5)
+      real*8         isotope(200), newisotope(200),
+     .               isoabund(200,5), newisoabund(200,5)
       integer        numiso, newnumiso,
      .               numisosyn, newnumisosyn, isorun
 

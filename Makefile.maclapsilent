@@ -30,7 +30,7 @@ COMMON =  Atmos.com Dummy.com Equivs.com Factor.com Kappa.com Linex.com \
 	Quants.com Multimod.com Dampdat.com Source.com
 
 CC = cc
-FC = gfortran -fno-range-check -w 
+FC = gfortran -fno-range-check -w -fallow-argument-mismatch
 #FC = g77 -w
 
 # the following lines point to some needed libraries
@@ -53,7 +53,8 @@ all: MOOGSILENT ;
 	@echo -----------------------------------------------------------------
 
 MOOGSILENT:  $(OBJECTS);
-	$(FC) $(OBJECTS) -o MOOGSILENT -L$(X11LIB) -lX11 
+	$(FC) $(OBJECTS) -o MOOGSILENT
+	#-L$(X11LIB) -lX11 
 
 	#-L$(SMLIB) -lplotsub -ldevices -lutils -L$(AQLIB) -laquaterm
 
