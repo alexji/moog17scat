@@ -184,9 +184,13 @@ c***  ACCELERATION OF CONVERGENCE: Calculate new etat and prepare to exit iterat
         enddo
         if (q_max .le. Converg_iter .or. Max_iter .eq. 1) exit                 | DETERMINE if convergence requirements met and EXIT routine (IMPT. STEP!)
         if (IT .ge. Max_iter) then                                             | NOTIFY user if the maximum number of iterations exceeded
-          write (0,'(A,F12.5,1X,1p7e10.2,1X,I3,1X,I3)')           
-     >      'Maximum number of iterations exceeded : wave, q_max= ',
-     >      wave, q_max, i_max, ntau
+           write (0, '(A)') 
+     >       'Maximum number of iterations exceeded : wave, q_max= '
+           write (0,'(F12.5,1p7e10.2)') wave, q_max
+           write (0,'(I3,I3)') i_max, ntau
+!          write (0,'(A,F12.5,1X,1p7e10.2,1X,I3,1X,I3)')           
+!     >      'Maximum number of iterations exceeded : wave, q_max= ',
+!     >      wave, q_max, i_max, ntau
           exit                                                                 | EXIT routine if maximum number of iterations exceeded
         endif
 c     -----------------------
