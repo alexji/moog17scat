@@ -1,6 +1,11 @@
 # moog17scat
 MOOG 2017 version with scattering
 
+# UPDATE: Sep 1, 2022
+Jen Sobeck has a new repository with updates to the code and more robustness checks.
+I recommend new users use her version as it will likely be much better maintained than this repository.
+https://github.com/jsobeck/MOOG-SCAT_basic_git
+
 ## UPDATE: Nov 16, 2021
 I have updated `Synspec.f` following the comment below. I think it is better to change this than not.
 
