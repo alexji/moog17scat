@@ -1,6 +1,14 @@
 # moog17scat
 MOOG 2017 version with scattering
 
+We have removed all code involving supermongo on purpose. If you want supermongo, get the original MOOG from Jen Sobeck's page.
+
+# UPDATE: Jan 14, 2025
+I have updated the Makefiles so that it is more clear.
+I removed `Makefile.*` and added just the regular `make`
+You can now just use `make` to compile instead of `make -f Makefile.maclapsilent`.
+There are now some helpful error messages if there are linking problems (usually caused by having anaconda installed)
+
 # UPDATE: Sep 1, 2022
 Jen Sobeck has a new repository with updates to the code and more robustness checks.
 I recommend new users use her version as it will likely be much better maintained than this repository.
