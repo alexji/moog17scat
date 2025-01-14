@@ -1,14 +1,14 @@
 #     makefile for MOOGSILENT with all of the common block assignments;
-#     this is for a mac machine
+#     this is for my Mac laptop
 
 #     here are the object files
 OBJECTS = Abfind.o Abpop.o Abunplot.o Batom.o Begin.o Binary.o \
-	Binplot.o Binplotprep.o Blankstring.o Blends.o Bmolec.o Boxit.o \
+        Binplot.o Binplotprep.o Blankstring.o Blends.o Bmolec.o Boxit.o \
         Calmod.o Cdcalc.o Chabund.o Cog.o Cogplot.o Cogsyn.o \
         Correl.o Crosscorr.o Curve.o Damping.o Defcolor.o Discov.o \
         Doflux.o Drawcurs.o Eqlib.o Estim.o Ewfind.o \
         Ewweighted.o Fakeline.o Findtic.o Finish.o \
-        Fluxplot.o Gammabark.o Getasci.o Getcount.o Getnum.o \
+        Fluxplot.o Gammabark.o Getasci.o Getcount.o Getnum.o Getsyns.o \
         Gridplo.o Gridsyn.o Infile.o Inlines.o Inmodel.o Invert.o \
         Jexpint.o Lineinfo.o Lineabund.o Linlimit.o \
         Makeplot.o Minimax.o Molquery.o Moogsilent.o Mydriver.o \
@@ -23,19 +23,18 @@ OBJECTS = Abfind.o Abpop.o Abunplot.o Batom.o Begin.o Binary.o \
 	Sourcefunc_scat_cont.o AngWeight.o \
 	Sourcefunc_scat_line.o Cdcalc_JS.o
 
+
 #     here are the common files
 COMMON =  Atmos.com Dummy.com Equivs.com Factor.com Kappa.com Linex.com \
 	Mol.com Multistar.com Obspars.com Plotval.com Pstuff.com \
 	Quants.com Multimod.com Dampdat.com Source.com
 
-CC = cc
-#FC = g77 -w
-FC = gfortran -Wall -m64 -ff2c
+FC = gfortran -fno-range-check -w -fallow-argument-mismatch
+#FC = gfortran # If you have an old version of gfortran 
 
 # the following lines point to some needed libraries
 X11LIB = /usr/X11R6/lib
-#SMLIB = /usr/local/scisoft/packages/sm/lib
-SMLIB = /usr/local/lib
+SMLIB = /usr/local/scisoft/packages/sm/lib
 AQLIB = /usr/local/scisoft/lib
 
 #        here are the compilation and linking commands
@@ -53,8 +52,21 @@ all: MOOGSILENT ;
 	@echo -----------------------------------------------------------------
 
 MOOGSILENT:  $(OBJECTS);
-	$(FC) $(OBJECTS) -o MOOGSILENT -L$(X11LIB) -lX11 \
-	-L$(SMLIB) -lplotsub -ldevices -lutils -L$(AQLIB) -laquaterm
+	@echo -----------------------------------------------------------------
+	@echo which gfortran:
+	@which gfortran
+	@echo -----------------------------------------------------------------
+	@echo which ld:
+	@which ld
+	@echo -----------------------------------------------------------------
+	@echo "If the gfortran and ld paths above don't match, something is wrong. Make sure that they do."
+	@echo "The most common problem is that anaconda path has eaten gfortran or ld."
+	@echo "e.g. on Mac, you want homebrew gfortran (e.g. /opt/homebrew/bin/gfortran) and /usr/bin/ld"
+	@echo "     Failing to do so will give an error related to '!tapi-tbd'"
+	@echo "try 'which -a gfortran' or 'which -a ld' to see alternate paths"
+	@echo -----------------------------------------------------------------
+	@echo
+	$(FC) $(OBJECTS) -o MOOGSILENT
 
 $(OBJECTS): $(COMMON)
 
