@@ -29,7 +29,7 @@ COMMON =  Atmos.com Dummy.com Equivs.com Factor.com Kappa.com Linex.com \
 	Mol.com Multistar.com Obspars.com Plotval.com Pstuff.com \
 	Quants.com Multimod.com Dampdat.com Source.com
 
-FC = gfortran -fno-range-check -w -fallow-argument-mismatch
+FC = gfortran -fno-range-check -w -fallow-argument-mismatch -std=legacy
 #FC = gfortran # If you have an old version of gfortran 
 
 # the following lines point to some needed libraries
