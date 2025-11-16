@@ -3,6 +3,9 @@ MOOG 2017 version with scattering
 
 We have removed all code involving supermongo on purpose. If you want supermongo, get the original MOOG from Jen Sobeck's page.
 
+# UPDATE: Nov 16, 2025
+I have encountered bugs while synthesizing very large spectra (e.g. the entire optical range). For now I am suggesting that you don't synthesize things more than maybe ~100A at a time while I try to figure out the bug.
+
 # UPDATE: Jan 14, 2025
 I have updated the Makefiles so that it is more clear.
 I removed `Makefile.*` and added just the regular `make`
